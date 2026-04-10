@@ -1,20 +1,19 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000;
-const INSTANCE_ID = process.env.HOSTNAME;
+const PORT = 3000;
+const INSTANCE_ID = process.env.INSTANCE_ID;
 
 app.use(express.json());
 
 let products = [
     { id: 1, name: 'Laptop', price: 1500, quantity: 5},
-    { id: 2, name: 'Myszka', price: 50, quantity: 20},
-    { id: 3, name: 'Klawiatura', price: 100, quantity: 15}
+    { id: 2, name: 'Mouse', price: 50, quantity: 20},
+    { id: 3, name: 'Keyboard', price: 100, quantity: 15}
 ]
 
-// Endpoint główny — zwraca informacje o żądaniu
 app.get('/', (req, res) => {
     res.json({
-        message: 'Odpowiedź z backendu Node.js',
+        message: 'Response from Node.js backend',
         receivedHeaders: {
             host: req.headers['host'],
             xRealIp: req.headers['x-real-ip'],
@@ -55,7 +54,7 @@ app.post('/items', (req, res) => {
     const { name, quantity, price } = req.body;
 
     if (!name || quantity == null || price == null) {
-        return res.status(400).json({ error: 'name, quantity i price są wymagane' });
+        return res.status(400).json({ error: 'name, quantity and price are required' });
     }
 
     const newProduct = {
@@ -75,5 +74,5 @@ app.get('/health', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Serwer nasłuchuje na porcie ${PORT}`);
+    console.log(`Serwer listening on port ${PORT}`);
 });

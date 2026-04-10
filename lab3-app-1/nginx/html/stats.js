@@ -5,9 +5,9 @@ async function loadStats () {
     const data = await res.json();
     
     const stats = data.stats;
-    let html= `<h1>Liczba produktów: ${stats.products_count}</h1>`;
-    html += `<h2> Średnia cena: ${stats.avg_price}</h2>`;
-    html += `<h3> ID instancji: ${data.instance}</h3>`;
+    let html= `<h1> Product quantity: ${stats.products_count}</h1>`;
+    html += `<h2> Average price: ${stats.avg_price}</h2>`;
+    html += `<h3> Backend instance ID: ${data.instance}</h3>`;
 
     document.getElementById('stats').innerHTML = html;
 }
