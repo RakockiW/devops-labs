@@ -79,13 +79,10 @@ services:
       PGPASSWORD: ${POSTGRES_PASSWORD}
     command: >
       psql -h db -U ${POSTGRES_USER} -d ${POSTGRES_DB}
-      -c "INSERT INTO products (name, price, quantity) VALUES ('Keyboard', 9.99, 5), ('Mouse', 24.99, 10), ('PC', 234.49, 4)"
+      -c "INSERT INTO products (name, price, quantity) VALUES ('Widget', 9.99, 5), ('Gadget', 24.99, 10), ('Doohickey', 4.49, 15)"
     depends_on:
       db:
         condition: service_healthy
-      backend:
-        condition: service_healthy
-
 networks:
   front-net:
     driver: bridge
