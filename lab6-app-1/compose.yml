@@ -83,6 +83,9 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      backend:
+        condition: service_healthy
+        
 networks:
   front-net:
     driver: bridge
